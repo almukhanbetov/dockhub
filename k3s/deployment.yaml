@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dockhub
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dockhub
+  template:
+    metadata:
+      labels:
+        app: dockhub
+    spec:
+      containers:
+      - name: dockhub
+        image: almuko/dockhub:latest
+        ports:
+        - containerPort: 8088
+        env:
+        - name: DATABASE_URL
+          value: "postgres://postgres:Zxcvbnm123@host:5432/dockhub"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dockhub-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: dockhub
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8088

@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"os"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
@@ -22,5 +23,5 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"DATABASE_URL": dbUrl})
 	})
 
-	router.Run(":8205")
+	router.Run(":8088")
 }
