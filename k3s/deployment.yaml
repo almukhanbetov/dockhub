@@ -27,10 +27,11 @@ kind: Service
 metadata:
   name: dockhub-service
 spec:
-  type: LoadBalancer
+  type: NodePort
   selector:
     app: dockhub
   ports:
     - protocol: TCP
       port: 80
       targetPort: 8088
+      nodePort: 30088  # Можно указать порт от 30000 до 32767
